@@ -9,7 +9,11 @@ maintain_jobs = [
 	event.new_event(event.ETYPE_MONTHLY, 'zip-log', act_maintain.monlog_zipper, -1, '01:00:00', runmode=event.RUN_THREAD),
 	event.new_event(event.ETYPE_YEARLY, 'yearly_table', act_maintain.yearly_table, "12-31", "23:00:00", runmode=event.RUN_THREAD),
 ]
+
 maintainer = sys_gardD()
+
 maintainer.add_events(*maintain_jobs)
+
 maintainer.bind_arg('do_alerts', mail_queue)
+
 maintainer.start()
